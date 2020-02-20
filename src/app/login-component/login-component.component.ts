@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { RegistrationComponentComponent } from '../registration-component/registration-component.component';
+import { LoggedinService } from '../shared/logged-in.service';
 
 
 export class LoginDTO {
@@ -13,31 +14,36 @@ export class LoginDTO {
   templateUrl: './login-component.component.html',
   styleUrls: ['./login-component.component.css']
 })
-export class LoginComponentComponent implements OnInit {
+export class LoginComponentComponent  {
 
   private loginDTO: LoginDTO = new LoginDTO();
+  isLoggedIn: boolean;
+  
+  constructor(private route: Router, private loggedInService: LoggedinService) { }
 
-  constructor(private route: Router) { }
 
-  ngOnInit() {
-  }
-
-  login(){
+  login()
+  {
     let userList = JSON.parse(localStorage.getItem('userList'));
-
+    if(userList){
     let user = userList.filter(i => i.email == this.loginDTO.email && i.pwd == this.loginDTO.pwd);
-
-
     if(user.length > 0)
     {
       localStorage.setItem('currentUser',JSON.stringify(user));
-    this.route.navigate(['/dashboard']);
+      this.loggedInService.enableLoggedIn()
+      .subscribe((isLoggedIn) => {
+        this.isLoggedIn = isLoggedIn;
+        this.route.navigate(['/dashboard']);
+        
+        
+    });
     }
-    else
-    alert('Not Authorised');
+  }
+   
   }
 
-  signUp(){
+  signUp()
+  {
     this.route.navigate(['/register']);
   }
 }

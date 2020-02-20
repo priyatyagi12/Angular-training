@@ -29,30 +29,31 @@ z
   }
 
   register() {
+    
     this.userList = JSON.parse(localStorage.getItem('userList'));
-     if (this.userList && this.userList.length) {
-     if(this.currentUser && this.currentUser.email && this.userList.length)
-      {
+     if (this.userList && this.userList.length && this.currentUser && this.currentUser.email ) {
+     
       this.userList.forEach( (item, index) => {
         if(item.email === this.currentUser.email)
          this.userList.splice(index,1);
       });
      localStorage.setItem('currentUser',JSON.stringify(this.currentUser));
      this.user=this.currentUser
-
+     alert("update Successfully..")
+     this.route.navigate(['/login']);
     
-    }
       
     }
-     else
+     else{
+       if(!this.userList)
        this.userList = new Array<User>();
        this.userList.push(this.user);
-    localStorage.setItem('userList', JSON.stringify(this.userList));
+       localStorage.setItem('userList', JSON.stringify(this.userList));
+       alert("register Successfully..")
+       this.route.navigate(['/login']);
 
-    // RegistrationComponentComponent.users.push(this.user);
-    alert("registerd successfully!")
-    this.route.navigate(['/login']);
-
+     }
+    
   }
 
 }

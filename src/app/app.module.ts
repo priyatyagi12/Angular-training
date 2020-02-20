@@ -9,6 +9,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponentComponent } from './login-component/login-component.component';
 import { RegistrationComponentComponent } from './registration-component/registration-component.component';
 import {MatNativeDateModule,MatDatepickerModule,MatIconModule,MatButtonModule,MatCheckboxModule, MatToolbarModule, MatCardModule,MatFormFieldModule,MatInputModule,MatRadioModule,MatListModule,} from  '@angular/material';
+import { AuthGuard } from './auth-guard.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +35,7 @@ import {MatNativeDateModule,MatDatepickerModule,MatIconModule,MatButtonModule,Ma
 MatCardModule,
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

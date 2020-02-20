@@ -1,15 +1,14 @@
-
+<mat-toolbar>
+    <span>Dashboard</span>
+  </mat-toolbar>
+   
 <div *ngFor="let user of userList">
 {{user.fName}} {{user.lName}}
 </div>
-
-
-
-
 <div *ngFor="let cUser of currentUser">
-    {{cUser.fName}}
+    {{cUser.fName}} 
     <mat-icon (click)="edit()">edit</mat-icon>
     </div>
-<mat-card-actions>
+  <mat-card-actions>
     <button mat-raised-button (click)="logout()" color="primary">logout</button>
     </mat-card-actions>

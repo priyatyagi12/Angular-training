@@ -3,19 +3,22 @@
 </mat-toolbar>
 <mat-card class="my-card">
    <mat-card-content>
-      <form class="my-form">
+      <form class="my-form form-group" (ngSubmit)="form.valid && login()">
          <mat-form-field class="full-width">
             <mat-label>Email</mat-label>
-            <input  matInput  placeholder="Email" name="email" [(ngModel)]="loginDTO.email">
+            <input  matInput class="form-control" placeholder="Email" name="email" [(ngModel)]="loginDTO.email" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" required>
+            <mat-error>Please enter email</mat-error>
          </mat-form-field>
-         <mat-form-field class="full-width">
+         <mat-form-field class="full-width form-group">
             <mat-label>Password</mat-label>
-            <input  matInput  placeholder="Password" name="password" [(ngModel)]="loginDTO.pwd">
+            <input  matInput type="password" class="form-control" placeholder="Password" name="password" [(ngModel)]="loginDTO.pwd" required>
+            <mat-error>Please enter password</mat-error>
          </mat-form-field>
+         <mat-card-actions>
+            <button mat-raised-button (click)="login()" color="primary">LOGIN</button>
+            <button mat-raised-button (click)="signUp()" color="primary">SignUp</button>
+         </mat-card-actions>
       </form>
    </mat-card-content>
-   <mat-card-actions>
-      <button mat-raised-button (click)="login()" color="primary">LOGIN</button>
-      <button mat-raised-button (click)="signUp()" color="primary">SignUp</button>
-   </mat-card-actions>
+   
 </mat-card>

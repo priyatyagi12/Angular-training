@@ -3,26 +3,30 @@
 </mat-toolbar>
 <mat-card class="my-card">
    <mat-card-content>
-      <form class="my-form">  
-         <mat-form-field class="full-width">
+      <form class="my-form" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>  
+         <mat-form-field class="full-width form-group">
             <mat-label>First Name</mat-label>
-            <input  matInput  placeholder="First name"  name="fname" [(ngModel)]="user.fName"  required>
+            <input  matInput class="form-control" placeholder="First name"  name="fname" [(ngModel)]="user.fName"  required>
+             <mat-error>Please enter first name</mat-error>
          </mat-form-field>
-         <mat-form-field class="full-width">
+         <mat-form-field class="full-width form-group">
             <mat-label>Last Name</mat-label>
-            <input  matInput  placeholder="Last Name" name="lname" [(ngModel)]="user.lName" required>
-         </mat-form-field>
-         <mat-form-field class="full-width">
+            <input  matInput class="form-control" placeholder="Last Name" name="lname" [(ngModel)]="user.lName" required>
+             </mat-form-field>
+         <mat-form-field class="full-width form-group">
             <mat-label>Address</mat-label>
-            <input  matInput  placeholder="Address" name="address" [(ngModel)]="user.address" required>
+            <input  matInput  class="form-control" placeholder="Address" name="address" [(ngModel)]="user.address" required>
+            <mat-error>Please enter address</mat-error>
          </mat-form-field>
-         <mat-form-field class="full-width">
+         <mat-form-field class="full-width form-group">
             <mat-label>Email</mat-label>
-            <input  matInput  placeholder="Email" name="email" [(ngModel)]="user.email">
+            <input  matInput class="form-control" placeholder="Email" name="email" [(ngModel)]="user.email" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" required>
+            <mat-error>Please enter email</mat-error>
          </mat-form-field>
-         <mat-form-field class="full-width">
+         <mat-form-field class="full-width form-group">
             <mat-label>Password</mat-label>
-            <input  matInput  placeholder="Password"  name="password" [(ngModel)]="user.pwd">
+            <input  matInput type="password" class="form-control" placeholder="Password"  name="password" [(ngModel)]="user.pwd" required>
+            <mat-error>Please enter password</mat-error>
          </mat-form-field>
          <section class="example-section">
             <label class="full-width">Gender:</label>
@@ -34,10 +38,9 @@
                <mat-radio-button class="example-margin" value="before">Other</mat-radio-button>
             </mat-radio-group>
          </section>
-         
+         <mat-card-actions>
+         <button mat-raised-button type="submit" color="primary">REGISTER</button>
+      </mat-card-actions>
       </form>
    </mat-card-content>
-   <mat-card-actions>
-      <button mat-raised-button (click)="register()" color="primary">REGISTER</button>
-   </mat-card-actions>
-</mat-card>
+ </mat-card>
